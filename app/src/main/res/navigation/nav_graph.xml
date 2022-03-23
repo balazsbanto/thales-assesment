@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/login"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.blade.thalesassessment.ui.view.ui.login.LoginFragment"
+        android:label="login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_userInformation"
+            app:destination="@id/userInformation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userInformation"
+        android:name="com.blade.thalesassessment.ui.view.user_information.UserInformationFragment"
+        android:label="user information"
+        tools:layout="@layout/fragment_user_information" />
+
+</navigation>
