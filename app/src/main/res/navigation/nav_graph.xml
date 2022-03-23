@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/login"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login">
 
     <fragment
         android:id="@+id/login"
         android:name="com.blade.thalesassessment.ui.view.ui.login.LoginFragment"
         android:label="login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_userInformation"
             app:destination="@id/userInformation" />
@@ -19,6 +19,12 @@
         android:id="@+id/userInformation"
         android:name="com.blade.thalesassessment.ui.view.user_information.UserInformationFragment"
         android:label="user information"
-        tools:layout="@layout/fragment_user_information" />
+        tools:layout="@layout/fragment_user_information">
+        <action
+            android:id="@+id/action_userInformation_to_login"
+            app:destination="@id/login"
+            app:popUpTo="@id/login"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 </navigation>
