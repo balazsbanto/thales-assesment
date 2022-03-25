@@ -1,29 +1,28 @@
 package com.blade.thalesassessment.ui.view.ui.login;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
 import com.blade.thalesassessment.R;
 import com.blade.thalesassessment.ui.view.data.LoginRepository;
 import com.blade.thalesassessment.ui.view.data.Result;
-import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
+import com.blade.thalesassessment.ui.view.data.model.LoginResponse;
+
+import io.reactivex.Scheduler;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 //import com.blade.thalesassessment.ui.view.R;
 
 public class LoginViewModel extends ViewModel {
 
-    private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
 
     LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
-    }
-
-    LiveData<LoginFormState> getLoginFormState() {
-        return loginFormState;
     }
 
     LiveData<LoginResult> getLoginResult() {
@@ -32,40 +31,29 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        loginRepository.login(username, password).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<LoginResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+//                        loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+                    }
 
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
-        } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
-        }
-    }
+                    @Override
+                    public void onSuccess(@NonNull LoginResponse loginResponse) {
+                        loginResult.setValue(new LoginResult(new LoggedInUserView(loginResponse.getUserId())));
+                    }
 
-    public void loginDataChanged(String username, String password) {
-        if (!isUserNameValid(username)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
-        } else if (!isPasswordValid(password)) {
-            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
-        } else {
-            loginFormState.setValue(new LoginFormState(true));
-        }
-    }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        loginResult.setValue(new LoginResult(new LoggedInUserView(e.getMessage())));
+                    }
+                });
 
-    // A placeholder username validation check
-    private boolean isUserNameValid(String username) {
-        if (username == null) {
-            return false;
-        }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
-    }
-
-    // A placeholder password validation check
-    private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+//        if (result instanceof Result.Success) {
+//            LoginResponse data = ((Result.Success<LoginResponse>) result).getData();
+//            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+//        } else {
+//            loginResult.setValue(new LoginResult(R.string.login_failed));
+//        }
     }
 }

@@ -1,6 +1,8 @@
 package com.blade.thalesassessment.ui.view.data;
 
-import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
+import com.blade.thalesassessment.ui.view.data.model.LoginResponse;
+
+import io.reactivex.Single;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -10,18 +12,18 @@ public class LoginRepository {
 
     private static volatile LoginRepository instance;
 
-    private LoginDataSource dataSource;
+    private LoginRemoteDataSource dataSource;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
-    private LoggedInUser user = null;
+    private LoginResponse user = null;
 
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
+    private LoginRepository(LoginRemoteDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance(LoginRemoteDataSource dataSource) {
         if (instance == null) {
             instance = new LoginRepository(dataSource);
         }
@@ -34,21 +36,26 @@ public class LoginRepository {
 
     public void logout() {
         user = null;
-        dataSource.logout();
+//        dataSource.logout();
     }
 
-    private void setLoggedInUser(LoggedInUser user) {
+    private void setLoggedInUser(LoginResponse user) {
         this.user = user;
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public Single<LoginResponse> login(String username, String password) {
         // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
-        if (result instanceof Result.Success) {
-            setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
-        }
-        return result;
+        return dataSource.login(username, password);
+
+//                .map(loginResponse -> {
+//            this.user = loginResponse;
+//            return loginResponse;
+//        });
+//        if (result instanceof Result.Success) {
+//            setLoggedInUser(((Result.Success<LoginResponse>) result).getData());
+//        }
+//        return result;
     }
 }
