@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
  */
-public class LoginResponse {
+public class LoggedInUser {
     @SerializedName("access_token")
     private String accessToken;
     @SerializedName("token_type")

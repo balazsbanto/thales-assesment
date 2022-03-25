@@ -1,9 +1,8 @@
 package com.blade.thalesassessment.ui.view.data;
 
-import com.blade.thalesassessment.ui.view.data.model.LoginResponse;
+import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
 import com.blade.thalesassessment.ui.view.data.network.UserApi;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
@@ -18,7 +17,7 @@ public class LoginRemoteDataSource {
         this.userApi = userApi;
     }
 
-    public Single<LoginResponse> login(String username, String password) {
+    public Single<LoggedInUser> login(String username, String password) {
 
 //        return userApi.loginUser("password", username, password)
 //                .subscribeOn(Schedulers.io());

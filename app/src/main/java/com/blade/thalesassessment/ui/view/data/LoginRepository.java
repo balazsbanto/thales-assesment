@@ -1,8 +1,11 @@
 package com.blade.thalesassessment.ui.view.data;
 
-import com.blade.thalesassessment.ui.view.data.model.LoginResponse;
+import androidx.annotation.NonNull;
+
+import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
 
 import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -16,7 +19,7 @@ public class LoginRepository {
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
-    private LoginResponse user = null;
+    private LoggedInUser user = null;
 
     // private constructor : singleton access
     private LoginRepository(LoginRemoteDataSource dataSource) {
@@ -39,23 +42,20 @@ public class LoginRepository {
 //        dataSource.logout();
     }
 
-    private void setLoggedInUser(LoginResponse user) {
+    private void setLoggedInUser(LoggedInUser user) {
         this.user = user;
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Single<LoginResponse> login(String username, String password) {
+    public Single<LoggedInUser> login(String username, String password) {
         // handle login
-        return dataSource.login(username, password);
-
-//                .map(loginResponse -> {
-//            this.user = loginResponse;
-//            return loginResponse;
-//        });
-//        if (result instanceof Result.Success) {
-//            setLoggedInUser(((Result.Success<LoginResponse>) result).getData());
-//        }
-//        return result;
+        return dataSource.login(username, password).map(new Function<LoggedInUser, LoggedInUser>() {
+            @Override
+            public LoggedInUser apply(@NonNull LoggedInUser loggedInUser) throws Exception {
+                setLoggedInUser(loggedInUser);
+                return loggedInUser;
+            }
+        });
     }
 }

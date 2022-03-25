@@ -5,12 +5,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.blade.thalesassessment.R;
 import com.blade.thalesassessment.ui.view.data.LoginRepository;
-import com.blade.thalesassessment.ui.view.data.Result;
-import com.blade.thalesassessment.ui.view.data.model.LoginResponse;
+import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
 
-import io.reactivex.Scheduler;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -32,15 +29,15 @@ public class LoginViewModel extends ViewModel {
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
         loginRepository.login(username, password).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<LoginResponse>() {
+                .subscribe(new SingleObserver<LoggedInUser>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 //                        loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
                     }
 
                     @Override
-                    public void onSuccess(@NonNull LoginResponse loginResponse) {
-                        loginResult.setValue(new LoginResult(new LoggedInUserView(loginResponse.getUserId())));
+                    public void onSuccess(@NonNull LoggedInUser loggedInUser) {
+                        loginResult.setValue(new LoginResult(new LoggedInUserView(loggedInUser.getUserId())));
                     }
 
                     @Override
