@@ -1,12 +1,12 @@
-package com.blade.thalesassessment.ui.view.ui.login;
+package com.blade.thalesassessment.data.login.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.blade.thalesassessment.ui.view.data.LoginRemoteDataSource;
-import com.blade.thalesassessment.ui.view.data.LoginRepository;
-import com.blade.thalesassessment.ui.view.data.network.NetworkManager;
+import com.blade.thalesassessment.data.LoginRemoteDataSource;
+import com.blade.thalesassessment.data.LoginRepository;
+import com.blade.thalesassessment.network.NetworkManager;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

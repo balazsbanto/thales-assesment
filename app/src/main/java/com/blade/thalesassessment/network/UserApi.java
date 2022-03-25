@@ -1,7 +1,7 @@
-package com.blade.thalesassessment.ui.view.data.network;
+package com.blade.thalesassessment.network;
 
-import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
-import com.blade.thalesassessment.ui.view.data.model.UserInformation;
+import com.blade.thalesassessment.data.login.LoggedInUser;
+import com.blade.thalesassessment.data.user_information.UserInformation;
 
 import io.reactivex.Single;
 import retrofit2.http.Field;

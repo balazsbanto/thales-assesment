@@ -1,31 +1,33 @@
-package com.blade.thalesassessment.ui.view.ui.login;
+package com.blade.thalesassessment.data.login;
 
 import androidx.annotation.Nullable;
+
+import com.blade.thalesassessment.data.login.LoggedInUserView;
 
 /**
  * Authentication result : success (user details) or error message.
  */
-class LoginResult {
+public class LoginResult {
     @Nullable
     private LoggedInUserView success;
     @Nullable
     private String error;
 
-    LoginResult(@Nullable String error) {
+    public LoginResult(@Nullable String error) {
         this.error = error;
     }
 
-    LoginResult(@Nullable LoggedInUserView success) {
+    public LoginResult(@Nullable LoggedInUserView success) {
         this.success = success;
     }
 
     @Nullable
-    LoggedInUserView getSuccess() {
+    public LoggedInUserView getSuccess() {
         return success;
     }
 
     @Nullable
-    String getError() {
+    public String getError() {
         return error;
     }
 }

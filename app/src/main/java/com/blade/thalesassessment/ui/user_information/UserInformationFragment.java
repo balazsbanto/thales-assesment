@@ -1,4 +1,4 @@
-package com.blade.thalesassessment.ui.view.user_information;
+package com.blade.thalesassessment.ui.user_information;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,8 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blade.thalesassessment.R;
+import com.blade.thalesassessment.data.user_information.UserInformationViewState;
+import com.blade.thalesassessment.data.user_information.viewmodel.UserInformationViewModel;
+import com.blade.thalesassessment.data.user_information.viewmodel.UserInformationViewModelFactory;
 import com.blade.thalesassessment.databinding.FragmentUserInformationBinding;
-import com.blade.thalesassessment.ui.view.data.model.UserInformation;
+import com.blade.thalesassessment.data.user_information.UserInformation;
 import com.blade.thalesassessment.utils.AlertDialogBuilder;
 
 public class UserInformationFragment extends Fragment {

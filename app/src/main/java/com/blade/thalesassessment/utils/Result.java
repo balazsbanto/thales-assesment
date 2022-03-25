@@ -1,4 +1,4 @@
-package com.blade.thalesassessment.ui.view.data;
+package com.blade.thalesassessment.utils;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.

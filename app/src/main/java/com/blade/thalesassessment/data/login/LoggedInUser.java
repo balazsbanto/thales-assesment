@@ -1,4 +1,4 @@
-package com.blade.thalesassessment.ui.view.data.model;
+package com.blade.thalesassessment.data.login;
 
 import com.google.gson.annotations.SerializedName;
 

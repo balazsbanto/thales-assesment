@@ -1,4 +1,4 @@
-package com.blade.thalesassessment.ui.view.data.network;
+package com.blade.thalesassessment.network;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

@@ -1,10 +1,9 @@
-package com.blade.thalesassessment.ui.view.data;
+package com.blade.thalesassessment.data;
 
-import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
-import com.blade.thalesassessment.ui.view.data.model.UserInformation;
-import com.blade.thalesassessment.ui.view.data.network.UserApi;
+import com.blade.thalesassessment.data.login.LoggedInUser;
+import com.blade.thalesassessment.data.user_information.UserInformation;
+import com.blade.thalesassessment.network.UserApi;
 
-import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 

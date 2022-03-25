@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/login"
-        android:name="com.blade.thalesassessment.ui.view.ui.login.LoginFragment"
+        android:name="com.blade.thalesassessment.ui.login.LoginFragment"
         android:label="login"
         tools:layout="@layout/fragment_login">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/userInformation"
-        android:name="com.blade.thalesassessment.ui.view.user_information.UserInformationFragment"
+        android:name="com.blade.thalesassessment.ui.user_information.UserInformationFragment"
         android:label="user information"
         tools:layout="@layout/fragment_user_information">
         <action

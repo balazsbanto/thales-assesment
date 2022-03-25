@@ -1,12 +1,13 @@
-package com.blade.thalesassessment.ui.view.user_information;
+package com.blade.thalesassessment.data.user_information.viewmodel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.blade.thalesassessment.ui.view.data.LoginRepository;
-import com.blade.thalesassessment.ui.view.data.model.UserInformation;
+import com.blade.thalesassessment.data.LoginRepository;
+import com.blade.thalesassessment.data.user_information.UserInformation;
+import com.blade.thalesassessment.data.user_information.UserInformationViewState;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -17,11 +18,11 @@ public class UserInformationViewModel extends ViewModel {
 
     private LoginRepository loginRepository;
 
-    UserInformationViewModel(LoginRepository loginRepository) {
+    public UserInformationViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
-    LiveData<UserInformationViewState> getUserInformationObservable() {
+    public LiveData<UserInformationViewState> getUserInformationObservable() {
         return userInformationLiveData;
     }
 

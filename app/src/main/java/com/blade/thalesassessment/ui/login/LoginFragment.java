@@ -1,19 +1,14 @@
-package com.blade.thalesassessment.ui.view.ui.login;
+package com.blade.thalesassessment.ui.login;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blade.thalesassessment.R;
+import com.blade.thalesassessment.data.login.LoggedInUserView;
+import com.blade.thalesassessment.data.login.LoginResult;
+import com.blade.thalesassessment.data.login.viewmodel.LoginViewModel;
+import com.blade.thalesassessment.data.login.viewmodel.LoginViewModelFactory;
 import com.blade.thalesassessment.databinding.FragmentLoginBinding;
 import com.blade.thalesassessment.utils.AlertDialogBuilder;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class LoginFragment extends Fragment {
 

@@ -1,17 +1,17 @@
-package com.blade.thalesassessment.ui.view.ui.login;
+package com.blade.thalesassessment.data.login.viewmodel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.blade.thalesassessment.ui.view.data.LoginRepository;
-import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
-
+import com.blade.thalesassessment.data.LoginRepository;
+import com.blade.thalesassessment.data.login.LoggedInUser;
+import com.blade.thalesassessment.data.login.LoggedInUserView;
+import com.blade.thalesassessment.data.login.LoginResult;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-//import com.blade.thalesassessment.ui.view.R;
 
 public class LoginViewModel extends ViewModel {
 
@@ -22,7 +22,7 @@ public class LoginViewModel extends ViewModel {
         this.loginRepository = loginRepository;
     }
 
-    LiveData<LoginResult> getLoginResult() {
+    public LiveData<LoginResult> getLoginResult() {
         return loginResult;
     }
 
