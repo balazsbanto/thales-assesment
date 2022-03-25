@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import com.blade.thalesassessment.R;
 import com.blade.thalesassessment.databinding.FragmentLoginBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class LoginFragment extends Fragment {
 
@@ -102,11 +104,15 @@ public class LoginFragment extends Fragment {
     }
 
     private void showLoginFailed(String errorString) {
-        if (getContext() != null && getContext().getApplicationContext() != null) {
-            Toast.makeText(
-                    getContext().getApplicationContext(),
-                    errorString,
-                    Toast.LENGTH_LONG).show();
+        if (getContext() != null) {
+
+            new MaterialAlertDialogBuilder(getContext())
+                    .setTitle("Error")
+                    .setMessage(errorString)
+                    .setPositiveButton("Ok", (dialog, which) -> {
+                        dialog.dismiss();
+                    })
+                    .show();
         }
     }
 

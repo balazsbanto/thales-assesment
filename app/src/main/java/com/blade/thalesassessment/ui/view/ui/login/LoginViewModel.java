@@ -45,7 +45,7 @@ public class LoginViewModel extends ViewModel {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        loginResult.setValue(new LoginResult(new LoggedInUserView(e.getMessage())));
+                        loginResult.setValue(new LoginResult(e.getMessage()));
                     }
                 });
 
