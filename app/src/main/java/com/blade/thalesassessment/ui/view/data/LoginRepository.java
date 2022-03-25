@@ -3,6 +3,7 @@ package com.blade.thalesassessment.ui.view.data;
 import androidx.annotation.NonNull;
 
 import com.blade.thalesassessment.ui.view.data.model.LoggedInUser;
+import com.blade.thalesassessment.ui.view.data.model.UserInformation;
 
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
@@ -39,7 +40,6 @@ public class LoginRepository {
 
     public void logout() {
         user = null;
-//        dataSource.logout();
     }
 
     private void setLoggedInUser(LoggedInUser user) {
@@ -57,5 +57,10 @@ public class LoginRepository {
                 return loggedInUser;
             }
         });
+    }
+
+    public Single<UserInformation> getUserInformation() {
+        // handle login
+        return dataSource.getUserInformation(user.getAccessToken());
     }
 }

@@ -11,4 +11,19 @@
     <string name="login_failed">"Login failed"</string>
     <string name="logout_button">"Logout"</string>
 
+    <string name="user_information_id">id: %1$d</string>
+    <string name="user_information_username">username: %1$s</string>
+    <string name="user_information_email">email: %1$s</string>
+    <string name="user_information_roles">roles: %1$s</string>
+    <string name="user_information_firstname">firstname: %1$s</string>
+    <string name="user_information_lastname">lastname: %1$s</string>
+    <string name="user_information_location">location: %1$s</string>
+    <string name="user_information_language">language: %1$s</string>
+    <string name="user_information_isAccountNonExpired">AccountNonExpired: %1$s</string>
+    <string name="user_information_isAccountNonLocked">AccountNonLocked: %1$s</string>
+    <string name="user_information_isCredentialsNonExpired">CredentialsNonExpired: %1$s</string>
+    <string name="user_information_isEnabled">isEnabled: %1$s</string>
+    <string name="user_information_creationDate">creationDate: %1$s</string>
+
+
 </resources>
