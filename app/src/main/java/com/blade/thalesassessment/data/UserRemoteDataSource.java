@@ -20,11 +20,9 @@ public class UserRemoteDataSource {
 
     public Single<LoggedInUser> login(String username, String password) {
 
-//        return userApi.loginUser("password", username, password)
-//                .subscribeOn(Schedulers.io());
-
-        return userApi.loginUser("password", "assessment1", "Password@12")
+        return userApi.loginUser("password", username, password)
                 .subscribeOn(Schedulers.io());
+
     }
 
     public Single<UserInformation> getUserInformation(String token) {
