@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.blade.thalesassessment.data.LoginRepository;
+import com.blade.thalesassessment.data.UserRepository;
 import com.blade.thalesassessment.data.user_information.UserInformation;
 import com.blade.thalesassessment.data.user_information.UserInformationViewState;
 
@@ -16,10 +16,10 @@ import io.reactivex.disposables.Disposable;
 public class UserInformationViewModel extends ViewModel {
     private MutableLiveData<UserInformationViewState> userInformationLiveData = new MutableLiveData<>();
 
-    private LoginRepository loginRepository;
+    private UserRepository userRepository;
 
-    public UserInformationViewModel(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
+    public UserInformationViewModel(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public LiveData<UserInformationViewState> getUserInformationObservable() {
@@ -27,7 +27,7 @@ public class UserInformationViewModel extends ViewModel {
     }
 
     public void requestUserInformation() {
-        loginRepository.getUserInformation().observeOn(AndroidSchedulers.mainThread())
+        userRepository.getUserInformation().observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<UserInformation>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
@@ -47,6 +47,6 @@ public class UserInformationViewModel extends ViewModel {
     }
 
     public void logOut() {
-        loginRepository.logout();
+        userRepository.logout();
     }
 }

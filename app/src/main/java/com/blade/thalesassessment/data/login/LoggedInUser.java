@@ -3,7 +3,7 @@ package com.blade.thalesassessment.data.login;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Data class that captures user information for logged in users retrieved from LoginRepository
+ * Data class that captures user information for logged in users retrieved from repository
  */
 public class LoggedInUser {
     @SerializedName("access_token")

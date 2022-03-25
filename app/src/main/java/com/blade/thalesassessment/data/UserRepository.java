@@ -12,24 +12,22 @@ import io.reactivex.functions.Function;
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
-public class LoginRepository {
+public class UserRepository {
 
-    private static volatile LoginRepository instance;
+    private static volatile UserRepository instance;
 
-    private LoginRemoteDataSource dataSource;
+    private UserRemoteDataSource dataSource;
 
-    // If user credentials will be cached in local storage, it is recommended it be encrypted
-    // @see https://developer.android.com/training/articles/keystore
     private LoggedInUser user = null;
 
     // private constructor : singleton access
-    private LoginRepository(LoginRemoteDataSource dataSource) {
+    private UserRepository(UserRemoteDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public static LoginRepository getInstance(LoginRemoteDataSource dataSource) {
+    public static UserRepository getInstance(UserRemoteDataSource dataSource) {
         if (instance == null) {
-            instance = new LoginRepository(dataSource);
+            instance = new UserRepository(dataSource);
         }
         return instance;
     }
@@ -44,8 +42,6 @@ public class LoginRepository {
 
     private void setLoggedInUser(LoggedInUser user) {
         this.user = user;
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
     }
 
     public Single<LoggedInUser> login(String username, String password) {

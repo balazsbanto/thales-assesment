@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.blade.thalesassessment.data.LoginRemoteDataSource;
-import com.blade.thalesassessment.data.LoginRepository;
+import com.blade.thalesassessment.data.UserRemoteDataSource;
+import com.blade.thalesassessment.data.UserRepository;
 import com.blade.thalesassessment.network.NetworkManager;
 
 /**
@@ -19,7 +19,7 @@ public class LoginViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(LoginRepository.getInstance(new LoginRemoteDataSource(
+            return (T) new LoginViewModel(UserRepository.getInstance(new UserRemoteDataSource(
                     NetworkManager.getApi()
             )));
         } else {

@@ -27,10 +27,6 @@ public class UserInformationFragment extends Fragment {
     private UserInformationViewModel userInformationViewModel;
     private FragmentUserInformationBinding binding;
 
-    public static UserInformationFragment newInstance() {
-        return new UserInformationFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

@@ -20,8 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blade.thalesassessment.R;
-import com.blade.thalesassessment.data.login.LoggedInUserView;
-import com.blade.thalesassessment.data.login.LoginResult;
+import com.blade.thalesassessment.data.login.LoginResultViewState;
 import com.blade.thalesassessment.data.login.viewmodel.LoginViewModel;
 import com.blade.thalesassessment.data.login.viewmodel.LoginViewModelFactory;
 import com.blade.thalesassessment.databinding.FragmentLoginBinding;
@@ -54,18 +53,17 @@ public class LoginFragment extends Fragment {
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
 
-        loginViewModel.getLoginResult().observe(getViewLifecycleOwner(), new Observer<LoginResult>() {
+        loginViewModel.getLoginResult().observe(getViewLifecycleOwner(), new Observer<LoginResultViewState>() {
             @Override
-            public void onChanged(@Nullable LoginResult loginResult) {
-                if (loginResult == null) {
+            public void onChanged(@Nullable LoginResultViewState loginResultViewState) {
+                if (loginResultViewState == null) {
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
+                if (loginResultViewState.getError() != null) {
+                    showLoginFailed(loginResultViewState.getError());
+                } else {
+                    loginSuccessful();
                 }
             }
         });
@@ -91,14 +89,9 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
+    private void loginSuccessful() {
         NavController navController = NavHostFragment.findNavController(this);
         navController.navigate(R.id.action_login_to_userInformation);
-//        if (getContext() != null && getContext().getApplicationContext() != null) {
-//            Toast.makeText(getContext().getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-//        }
     }
 
     private void showLoginFailed(String errorString) {

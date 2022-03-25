@@ -10,11 +10,11 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-public class LoginRemoteDataSource {
+public class UserRemoteDataSource {
 
     private UserApi userApi;
 
-    public LoginRemoteDataSource(UserApi userApi) {
+    public UserRemoteDataSource(UserApi userApi) {
         this.userApi = userApi;
     }
 
